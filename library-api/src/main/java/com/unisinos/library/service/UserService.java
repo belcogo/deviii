@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,16 +20,23 @@ public class UserService {
     private PasswordEncoder pwdEncoder;
 
 
-    public boolean registerUser(User user) {
+    public Optional<User> registerUser(User user) {
         Optional<User> userContainer = userRepository.findByEmail(user.getEmail());
 
-        if(userContainer.isEmpty()) {
+        if (userContainer.isEmpty()) {
             user.setPassword(pwdEncoder.encode(user.getPassword()));
-            userRepository.save(user);
-            return true;
+            user = userRepository.save(user);
+            return Optional.of(user);
         }
 
-        return false;
+        return Optional.empty();
     }
 
+    public Optional<User> getUser(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public Iterable<User> getUsers() {
+        return userRepository.findAll();
+    }
 }

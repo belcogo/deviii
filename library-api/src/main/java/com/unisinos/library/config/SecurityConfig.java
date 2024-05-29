@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,10 +32,10 @@ public class SecurityConfig {
 
         http.csrf(htpSecurity -> htpSecurity.disable());
 
-        http.securityMatcher("/users","/index")
+        http.securityMatcher("/**")
                 .authorizeHttpRequests(
                         (authorize) -> authorize
-                                .requestMatchers("/users").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/users").permitAll()
                                 .anyRequest().authenticated())
 
                 .httpBasic(httpSec -> httpSec.authenticationEntryPoint(unauthorizedEntrypoint)).userDetailsService(authenticationService);
