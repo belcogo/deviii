@@ -32,10 +32,14 @@ public class SecurityConfig {
 
         http.csrf(htpSecurity -> htpSecurity.disable());
 
-        http.securityMatcher("/**")
+        http
+                .securityMatcher("/**")
                 .authorizeHttpRequests(
                         (authorize) -> authorize
                                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                                .requestMatchers("/swagger-ui/**").permitAll()
+                                .requestMatchers("/v3/api-docs/swagger-config").permitAll()
+                                .requestMatchers("/v3/api-docs").permitAll()
                                 .anyRequest().authenticated())
 
                 .httpBasic(httpSec -> httpSec.authenticationEntryPoint(unauthorizedEntrypoint)).userDetailsService(authenticationService);
@@ -44,7 +48,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
+        return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**"), new AntPathRequestMatcher("/swagger-ui/**"));
     }
 
 }

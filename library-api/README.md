@@ -10,3 +10,11 @@
 1. Go into the folder that has Dockerfile.
 2. Run the command ``docker build -t library-api .``
 3. Run the command `docker run -p 8099:8099 library-api`
+
+## Access Important Links:
+- Swagger: http://localhost:8099/swagger-ui/index.html
+- H2 Database: http://localhost:8099/h2-console/login.jsp?jsessionid=52fec5b0158e4553668d05407ea4a576
+  - Driver Class: org.h2.Driver
+  - JDBC URL: jdbc:h2:mem:mydb
+  - Username: sa
+  - Password: password
