@@ -1,5 +1,6 @@
 package com.unisinos.library.controller;
 
+import com.unisinos.library.dto.ErrorMessageResponse;
 import com.unisinos.library.dto.UserDto;
 import com.unisinos.library.service.UserService;
 import jakarta.websocket.server.PathParam;
@@ -20,7 +21,13 @@ public class UserController {
         var userCreated = userService.registerUser(user);
 
         if (userCreated.isEmpty()) {
-            return ResponseEntity.badRequest().body("User already registered");
+            var error =
+                    ErrorMessageResponse.builder()
+                    .errorCode("USER_001")
+                    .message("User already register")
+                            .build();
+
+            return ResponseEntity.badRequest().body(error);
         }
 
         return ResponseEntity.created(URI.create("/users/" + userCreated.get().id)).body(user);
