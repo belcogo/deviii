@@ -1,9 +1,8 @@
 package com.unisinos.library.controller;
 
-import com.unisinos.library.dto.ErrorMessageResponse;
+import com.unisinos.library.dto.response.ErrorMessageResponse;
 import com.unisinos.library.dto.UserDto;
 import com.unisinos.library.service.UserService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
