@@ -19,6 +19,10 @@
   - Username: sa
   - Password: password
 
+## Insomnia
+- In case you want to use a tool to make the request, we have mapped the insomnia:
+  - `docs/insomnia-library-api-contract.json`
+
 ## Default Users
 
 | Email                    | Password |
