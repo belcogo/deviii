@@ -19,11 +19,15 @@ public class Book {
     @Column(nullable = false)
     public String author;
 
-    @Column(nullable = false)
+    @OneToOne
+    @JoinColumn(name = "genre_id")
+    public Genre genre;
+
+    @Column(name = "published_date", nullable = false)
     public LocalDate publishedDate;
 
     @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_date_time", nullable = false, updatable = false)
     public ZonedDateTime createdDateTime;
 
     @ManyToOne
