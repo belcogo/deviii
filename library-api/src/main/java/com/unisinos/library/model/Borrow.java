@@ -13,6 +13,10 @@ public class Borrow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    @Column(name = "borrow_status")
+    @Enumerated(EnumType.STRING)
+    public BorrowStatus borrowStatus;
+
     @ManyToOne
     @JoinColumn(name = "owner_id")
     public User owner;
