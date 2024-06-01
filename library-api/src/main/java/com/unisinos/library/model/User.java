@@ -1,5 +1,6 @@
 package com.unisinos.library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ public class User {
     public String name;
 
     @Column(nullable = false)
+    @JsonIgnore
     public String password;
 
     @Column(nullable = false, unique = true)
