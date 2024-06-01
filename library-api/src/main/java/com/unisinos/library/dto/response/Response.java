@@ -1,4 +1,4 @@
-package com.unisinos.library.dto;
+package com.unisinos.library.dto.response;
 
 import com.unisinos.library.dto.response.ErrorMessageResponse;
 import lombok.Builder;

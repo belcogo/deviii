@@ -1,5 +1,7 @@
 package com.unisinos.library.service;
 
+import com.unisinos.library.dto.response.ErrorMessageResponse;
+import com.unisinos.library.dto.response.Response;
 import com.unisinos.library.model.Role;
 import com.unisinos.library.model.User;
 import com.unisinos.library.repository.UserRepository;
@@ -20,16 +22,23 @@ public class UserService {
     private PasswordEncoder pwdEncoder;
 
 
-    public Optional<User> registerUser(User user) {
+    public Response<?> registerUser(User user) {
         Optional<User> userContainer = userRepository.findByEmail(user.getEmail());
 
-        if (userContainer.isEmpty()) {
-            user.setPassword(pwdEncoder.encode(user.getPassword()));
-            user = userRepository.save(user);
-            return Optional.of(user);
+        if (userContainer.isPresent()) {
+            var error = ErrorMessageResponse.builder()
+                    .field("email")
+                    .errorCode("DATA_PROVIDED_INCONSISTENT")
+                    .message("Email is already in use")
+                    .build();
+
+            return Response.builder().errorAccumulators(List.of(error)).build();
         }
 
-        return Optional.empty();
+        user.setPassword(pwdEncoder.encode(user.getPassword()));
+        user = userRepository.save(user);
+
+        return Response.builder().body(user).build();
     }
 
     public Optional<User> getUserByEmail(String email) {

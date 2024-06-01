@@ -27,21 +27,21 @@ INSERT INTO genres (id, name) VALUES
 -- Inserção dos usuários
 
 -- Senha 1234
-INSERT INTO users (id, name, password, email, role) VALUES
-(1, 'Bruno Hoffmann', '$2a$10$j8G1nR9JWwZL8/1NB5gN2.QGLGklbwyz.EGPqiJrz4NPTZdc1C2Ny', 'bruno.hoffmann@email.com', 'ROLE_USER');
+INSERT INTO users (name, password, email, role) VALUES
+('Bruno Hoffmann', '$2a$10$j8G1nR9JWwZL8/1NB5gN2.QGLGklbwyz.EGPqiJrz4NPTZdc1C2Ny', 'bruno.hoffmann@email.com', 'ROLE_USER');
 
 -- Senha 4321
-INSERT INTO users (id, name, password, email, role) VALUES
-(2, 'Bel Cogo', '$2a$10$BRUQ1Kb2IUP6sVyBiteCj.iXXK8r/T50YDhMXWs.9gQmot.u1gBv.', 'bel.cogo@email.com', 'ROLE_USER');
+INSERT INTO users (name, password, email, role) VALUES
+('Bel Cogo', '$2a$10$BRUQ1Kb2IUP6sVyBiteCj.iXXK8r/T50YDhMXWs.9gQmot.u1gBv.', 'bel.cogo@email.com', 'ROLE_USER');
 
 --- Senha 1234
-INSERT INTO users (id, name, password, email, role)
-VALUES (3, 'João Accorsi', '$2a$10$xFY7BpcGaF9TLlHJxK.7feAVR54tVElXBVcoWpNUIDNxHkOBeXVMG', 'joao.accorsi@email.com', 'ROLE_USER');
+INSERT INTO users (name, password, email, role)
+VALUES ('João Accorsi', '$2a$10$xFY7BpcGaF9TLlHJxK.7feAVR54tVElXBVcoWpNUIDNxHkOBeXVMG', 'joao.accorsi@email.com', 'ROLE_USER');
 
 
 --- Senha 1234
-INSERT INTO users (id, name, password, email, role)
-VALUES (4, 'Taylor Swift', '$2a$10$PlAUB9U6scNUSxBhdwDGE.MoSnZLnT2eZf6oBoHOzT4fIImVCuyYG', 'taylor.swift@email.com', 'ROLE_USER');
+INSERT INTO users (name, password, email, role)
+VALUES ('Taylor Swift', '$2a$10$PlAUB9U6scNUSxBhdwDGE.MoSnZLnT2eZf6oBoHOzT4fIImVCuyYG', 'taylor.swift@email.com', 'ROLE_USER');
 
 
 -- Inserção livros para Bruno

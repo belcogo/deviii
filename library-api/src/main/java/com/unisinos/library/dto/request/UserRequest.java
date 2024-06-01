@@ -1,53 +1,54 @@
 package com.unisinos.library.dto.request;
 
 import com.unisinos.library.dto.response.ErrorMessageResponse;
-import com.unisinos.library.model.Book;
+import com.unisinos.library.model.Role;
+import com.unisinos.library.model.User;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookRequest implements RequestBody {
-    public String title;
-    public Long idGenre;
-    public String author;
-    public LocalDate publishedDate;
+public class UserRequest implements RequestBody {
+    public String name;
+    public String password;
+    public String email;
+    public String role;
 
-    public Book translateToBook() {
-        return Book.builder()
-                .title(title)
-                .author(author)
-                .idGenre(idGenre)
-                .publishedDate(publishedDate)
+    public User convertToUser() {
+        return User.builder()
+                .name(name)
+                .email(email)
+                .password(password)
+                .role(Role.valueOf(role))
                 .build();
     }
 
+    @Override
     public List<ErrorMessageResponse> validate() {
         var erros = new ArrayList<ErrorMessageResponse>();
 
-        if (title == null || title.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             var error = ErrorMessageResponse
                     .builder()
                     .errorCode("INVALID_REQUEST")
-                    .field("title")
-                    .message("Title must be provided")
+                    .field("name")
+                    .message("Name must be provided")
                     .build();
 
             erros.add(error);
         }
 
-        if (idGenre == null) {
+        if (email == null || email.isEmpty()) {
             var error = ErrorMessageResponse
                     .builder()
                     .errorCode("INVALID_REQUEST")
-                    .field("idGenre")
-                    .message("IdGenre must be provided")
+                    .field("email")
+                    .message("Email must be provided")
                     .build();
 
             erros.add(error);
         }
 
-        if (author == null || author.isEmpty()) {
+        if (password == null || password.isEmpty()) {
             var error = ErrorMessageResponse
                     .builder()
                     .errorCode("INVALID_REQUEST")
@@ -58,17 +59,16 @@ public class BookRequest implements RequestBody {
             erros.add(error);
         }
 
-        if (publishedDate == null) {
+        if (role == null || !Role.canCovert(role)) {
             var error = ErrorMessageResponse
                     .builder()
                     .errorCode("INVALID_REQUEST")
-                    .field("publishedDate")
-                    .message("PublishedDate must be provided")
+                    .field("role")
+                    .message("Role must be provided or valid")
                     .build();
 
             erros.add(error);
         }
-
 
         return erros;
     }

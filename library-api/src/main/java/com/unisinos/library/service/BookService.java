@@ -6,7 +6,7 @@ import com.unisinos.library.model.User;
 import com.unisinos.library.repository.BookRepository;
 import com.unisinos.library.repository.GenreRepository;
 import com.unisinos.library.repository.UserRepository;
-import com.unisinos.library.dto.Response;
+import com.unisinos.library.dto.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,13 +39,13 @@ public class BookService {
     }
 
     public Response<?> createBook(Book book, User user) {
-        List<ErrorMessageResponse> errors = new ArrayList<>();
+        var errors = new ArrayList<ErrorMessageResponse>();
         var genre = genreRepository.findById(book.idGenre);
 
         if (genre.isEmpty()) {
             var error = ErrorMessageResponse
                     .builder()
-                    .errorCode("BOOK_001")
+                    .errorCode("DATA_PROVIDED_INCONSISTENT")
                     .field("idGenre")
                     .message("Genre not found")
                     .build();

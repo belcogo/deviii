@@ -1,7 +1,8 @@
 package com.unisinos.library.controller;
 
 import com.unisinos.library.dto.response.ErrorMessageResponse;
-import com.unisinos.library.dto.UserDto;
+import com.unisinos.library.dto.request.UserRequest;
+import com.unisinos.library.model.User;
 import com.unisinos.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,21 +16,23 @@ public class UserController {
     public UserService userService;
 
     @PostMapping("/users")
-    public ResponseEntity<?> create(@RequestBody UserDto userRequest) {
-        var user = userRequest.convertToUser();
-        var userCreated = userService.registerUser(user);
+    public ResponseEntity<?> create(@RequestBody UserRequest userRequest) {
+        var errors = userRequest.validate();
 
-        if (userCreated.isEmpty()) {
-            var error =
-                    ErrorMessageResponse.builder()
-                    .errorCode("USER_001")
-                    .message("User already register")
-                            .build();
-
-            return ResponseEntity.badRequest().body(error);
+        if (!errors.isEmpty()) {
+            return ResponseEntity.badRequest().body(errors);
         }
 
-        return ResponseEntity.created(URI.create("/users/" + userCreated.get().id)).body(user);
+        var user = userRequest.convertToUser();
+        var response = userService.registerUser(user);
+
+        if (response.errorAccumulators != null && !response.errorAccumulators.isEmpty()) {
+            return ResponseEntity.badRequest().body(response.errorAccumulators);
+        }
+
+        var idCreated = ((User) response.body).getId();
+
+        return ResponseEntity.created(URI.create("/users/" + idCreated)).body(user);
     }
 
     @GetMapping("/users")
