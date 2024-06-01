@@ -1,6 +1,7 @@
 package com.unisinos.library.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -8,6 +9,11 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "books")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +24,9 @@ public class Book {
 
     @Column(nullable = false)
     public String author;
+
+    @Transient
+    public Long idGenre;
 
     @ManyToOne
     @JoinColumn(name = "genre_id")

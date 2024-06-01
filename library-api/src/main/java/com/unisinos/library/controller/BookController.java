@@ -1,16 +1,19 @@
 package com.unisinos.library.controller;
 
+import com.unisinos.library.dto.request.BookRequest;
+import com.unisinos.library.dto.response.ErrorMessageResponse;
+import com.unisinos.library.model.Book;
 import com.unisinos.library.service.BookService;
 import com.unisinos.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.parameters.P;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
-public class BookController {
+public class BookController extends BaseController {
     @Autowired
     BookService bookService;
 
@@ -25,5 +28,33 @@ public class BookController {
     public ResponseEntity<?> getBooksFromUser(@PathVariable("id") Long userId) {
         var books = bookService.getBooksByUser(userId);
         return ResponseEntity.ok(books);
+    }
+
+    @PostMapping("/books")
+    public ResponseEntity<?> createBook(@RequestHeader("Authorization") String authorization, @RequestBody BookRequest bookRequest) {
+        var user = getUserByAuthToken(authorization);
+
+        if (user.isEmpty()) {
+            var responseBody = ErrorMessageResponse.builder()
+                    .message("User not found")
+                    .errorCode("USER_002");
+
+            return ResponseEntity.badRequest().body(responseBody);
+        }
+
+        var errors = bookRequest.validate();
+
+        if (!errors.isEmpty()) {
+            return ResponseEntity.badRequest().body(errors);
+        }
+
+        var book = bookRequest.translateToBook();
+        var response = bookService.createBook(book, user.get());
+
+        if (response.errorAccumulators != null && !response.errorAccumulators.isEmpty()) {
+            return ResponseEntity.badRequest().body(response.errorAccumulators);
+        }
+
+        return ResponseEntity.created(URI.create("/books/" + ((Book) response.body).getId())).body(response.body);
     }
 }

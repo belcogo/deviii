@@ -6,4 +6,5 @@ import lombok.Builder;
 public class ErrorMessageResponse {
     public String message;
     public String errorCode;
+    public String field;
 }
