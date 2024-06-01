@@ -28,7 +28,7 @@ INSERT INTO genres (id, name) VALUES
 
 -- Senha 1234
 INSERT INTO users (id, name, password, email, role) VALUES
-(1, 'Bruno', '$2a$10$j8G1nR9JWwZL8/1NB5gN2.QGLGklbwyz.EGPqiJrz4NPTZdc1C2Ny', 'bruno.hoffmann@email.com', 'ROLE_USER');
+(1, 'Bruno Hoffmann', '$2a$10$j8G1nR9JWwZL8/1NB5gN2.QGLGklbwyz.EGPqiJrz4NPTZdc1C2Ny', 'bruno.hoffmann@email.com', 'ROLE_USER');
 
 -- Senha 4321
 INSERT INTO users (id, name, password, email, role) VALUES

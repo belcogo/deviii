@@ -18,3 +18,12 @@
   - JDBC URL: jdbc:h2:mem:mydb
   - Username: sa
   - Password: password
+
+## Default Users
+
+| Email                    | Password |
+|--------------------------|----------|
+| bruno.hoffmann@email.com | 1234     |
+| bel.cogo@email.com       | 4321     |
+| joao.accorsi@email.com   | 1234     |
+| taylor.swift@email.com   | 1234     |
