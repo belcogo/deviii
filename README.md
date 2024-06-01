@@ -17,12 +17,12 @@ Develop an app or website that allows people to exchange books with each other.
 
 ### How to emulate the app
 **Make sure you have either a iOS or an Android emulator configured**
-1. From the projects root folder `/Biblioteca` run the command `yarn` to install the dependencies
-2. From the `ios/` folder run the command `pod install`
-3. Back to the the project's root folder run the command `npm run start`
+1. From the projects root folder `/Biblioteca` run the command `yarn` to install the dependencies.
+2. From the `ios/` folder run the command `pod install`.
+3. Back to the the project's root folder run the command `npm run start`.
 
     In the console you will be presented with a few options, select the one corresponding to the emulator that you have configured and the app will be installed and started automatically.
     ![console example](console-example.png)
 
-    If you already have the app installed in the emulator, there is no need to reinstall it selecting a option, just open the app in the emulator and it will be using the bundle currently running
+    If you already have the app installed in the emulator, there is no need to reinstall it by selecting an option, just open the app in the emulator and it will be using the bundle currently running.
 
