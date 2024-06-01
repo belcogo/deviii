@@ -19,7 +19,7 @@ public class Book {
     @Column(nullable = false)
     public String author;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "genre_id")
     public Genre genre;
 
@@ -33,4 +33,7 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "owner_id")
     public User owner;
+
+    @Column(name="external_photo_path")
+    public String externalPhotoPath;
 }
