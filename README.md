@@ -26,3 +26,5 @@ Develop an app or website that allows people to exchange books with each other.
 
     If you already have the app installed in the emulator, there is no need to reinstall it by selecting an option, just open the app in the emulator and it will be using the bundle currently running.
 
+### How to run the back-end
+- Consider to take a look on the [ README](library-api\README.md).
