@@ -2,6 +2,7 @@ package com.unisinos.library.controller;
 
 import com.unisinos.library.dto.request.BookRequest;
 import com.unisinos.library.dto.response.ErrorMessageResponse;
+import com.unisinos.library.dto.response.Response;
 import com.unisinos.library.model.Book;
 import com.unisinos.library.service.BookService;
 import com.unisinos.library.service.UserService;
@@ -45,7 +46,8 @@ public class BookController extends BaseController {
         var errors = bookRequest.validate();
 
         if (!errors.isEmpty()) {
-            return ResponseEntity.badRequest().body(errors);
+            var response = Response.builder().errorAccumulators(errors).build();
+            return ResponseEntity.badRequest().body(response);
         }
 
         var book = bookRequest.translateToBook();

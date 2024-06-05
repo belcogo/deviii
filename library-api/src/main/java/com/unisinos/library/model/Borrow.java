@@ -1,6 +1,10 @@
 package com.unisinos.library.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.ZonedDateTime;
@@ -8,6 +12,10 @@ import java.util.List;
 
 @Entity
 @Table(name= "borrows")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Borrow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
