@@ -1,6 +1,11 @@
 package com.unisinos.library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -8,6 +13,10 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Table(name="messages")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Message {
 
     @Id
@@ -38,5 +47,6 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "borrow_id")
-    private Borrow borrow;
+    @JsonIgnore
+    public Borrow borrow;
 }

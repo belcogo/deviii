@@ -5,10 +5,8 @@ import com.unisinos.library.dto.response.ErrorMessageResponse;
 import com.unisinos.library.dto.response.Response;
 import com.unisinos.library.model.Book;
 import com.unisinos.library.service.BookService;
-import com.unisinos.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;

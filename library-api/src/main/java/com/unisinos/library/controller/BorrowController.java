@@ -22,6 +22,7 @@ public class BorrowController extends BaseController {
     @Autowired
     BorrowService borrowService;
 
+
     @GetMapping("users/{idUser}/borrows")
     public ResponseEntity<?> getUserBorrows(@PathVariable("idUser") Long idUser, @RequestHeader("Authorization") String authorization) {
         var userAuthenticated = getUserByAuthToken(authorization);
@@ -73,5 +74,4 @@ public class BorrowController extends BaseController {
 
         return ResponseEntity.ok(response.body);
     }
-
 }
