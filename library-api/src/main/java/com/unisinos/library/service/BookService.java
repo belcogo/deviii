@@ -38,6 +38,10 @@ public class BookService {
         return bookRepository.findAllByOwnerId(userId);
     }
 
+    public List<Book> getBooksAssociatedWithUser(Long userId) {
+        return bookRepository.getAllAssociatedBooks(userId);
+    }
+
     public Response<?> createBook(Book book, User user) {
         var errors = new ArrayList<ErrorMessageResponse>();
         var genre = genreRepository.findById(book.idGenre);

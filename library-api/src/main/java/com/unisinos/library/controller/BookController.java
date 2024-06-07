@@ -29,6 +29,12 @@ public class BookController extends BaseController {
         return ResponseEntity.ok(books);
     }
 
+    @GetMapping("/users/{id}/associated-books")
+    public ResponseEntity<?> getAssociatedBooks(@PathVariable("id") Long userId) {
+        var books = bookService.getBooksAssociatedWithUser(userId);
+        return ResponseEntity.ok(books);
+    }
+
     @PostMapping("/books")
     public ResponseEntity<?> createBook(@RequestHeader("Authorization") String authorization, @RequestBody BookRequest bookRequest) {
         var user = getUserByAuthToken(authorization);

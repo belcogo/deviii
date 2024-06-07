@@ -14,4 +14,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     List<Book> findByPartialTitle(@Param("partialTitle") String partialTitle);
 
     List<Book> findByGenreName(String genreName);
+
+    @Query("SELECT b FROM Book b WHERE b.owner.id = :userId OR b.id IN (SELECT br.bookRequested.id FROM Borrow br WHERE br.requester.id = :userId AND br.borrowStatus = com.unisinos.library.model.BorrowStatus.ACCEPTED)")
+    List<Book> getAllAssociatedBooks(Long userId);
 }
