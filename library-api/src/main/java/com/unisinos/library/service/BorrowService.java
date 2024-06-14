@@ -92,8 +92,8 @@ public class BorrowService {
             return Response.builder().errorAccumulators(List.of(error)).build();
         }
 
-        if (!Objects.equals(borrow.get().getRequester().getId(), userChanging.getId()) &&
-                Objects.equals(borrow.get().getOwner().getId(), userChanging.getId()) ) {
+        if (Objects.equals(borrow.get().getRequester().getId(), userChanging.getId()) &&
+                !Objects.equals(borrow.get().getOwner().getId(), userChanging.getId()) ) {
             var error = ErrorMessageResponse.builder()
                     .errorCode("BUSINESS_RULE")
                     .message("User cannot change this borrow")
