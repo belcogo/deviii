@@ -42,6 +42,7 @@ const createBook = async (title = '', idGenre = '', author = '', publishedDate =
 const bookService = {
   setAuthToken,
   fetchBooks,
+  createBook
 };
 
 export default bookService;
