@@ -1,14 +1,15 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from 'react-router-dom'
-import LoginPage from './pages/login.page';
-import CreateBookPage from './pages/createBook.page';
-import RegisterPage from './pages/register.page';
-// import { HomePage } from './pages/home.page';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { CreateBookPage, HomePage, LoginPage, RegisterPage } from './pages';
 
 const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: '/home',
+    element: <HomePage />
   },
   {
     path: "/books/create",
@@ -20,20 +21,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route
-//       element={<LoginPage />}
-//       path="/"
-//       errorElement={<>Error</>}
-//     />
-//   )
-// );
-
 function App() {
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

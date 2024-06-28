@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import userService from '../services/userService';
+import userService from '../../services/userService';
+import { styles } from './register.style';
 
-const RegisterPage = () => {
+export const RegisterPage = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -56,39 +57,3 @@ const RegisterPage = () => {
     </div>
   );
 };
-
-const styles = {
-  container: {
-    padding: '20px',
-    backgroundColor: '#EAE2D7',
-    minHeight: '100vh',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  formGroup: {
-    marginBottom: '15px',
-  },
-  input: {
-    padding: '10px',
-    fontSize: '16px',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-  },
-  button: {
-    padding: '10px',
-    fontSize: '16px',
-    backgroundColor: '#B18653',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-  },
-  error: {
-    color: 'red',
-    marginTop: '10px',
-  },
-};
-
-export default RegisterPage;
