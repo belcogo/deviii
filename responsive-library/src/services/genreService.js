@@ -16,7 +16,7 @@ const listGenres = async () => {
     const response = await axios.get(API_URL);
     return response.data;
   } catch (error) {
-    console.error('Error fetching books:', error);
+    console.error('Error fetching genres:', error);
     throw error;
   }
 };
