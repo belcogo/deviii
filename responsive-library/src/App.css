@@ -7,3 +7,17 @@
   display: flex;
   flex-direction: column;
 }
+
+.page {
+  background-color: #EAE2D7;
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageContent {
+  padding: 20px 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

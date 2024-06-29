@@ -1,12 +1,12 @@
 import ArrowLeftIcon from "../../assets/icons/arrow-left.svg";
 import { IconButton } from "../button/icon-button.component";
-import { styles } from "./header.style";
+import './header.style.css'
 
 export function Header({ title, showIcon }) {
   return (
-    <div style={styles.wrapper}>
+    <div className="headerWrapper">
       {showIcon && <IconButton Icon={ArrowLeftIcon} />}
-      <h1 style={styles.title}>{title}</h1>
+      <h1 className="headerTitle">{title}</h1>
     </div>
   )
 }

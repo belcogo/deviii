@@ -28,8 +28,8 @@ export const RegisterPage = () => {
 
   return (
     <div className="container">
-      <Header title="Cadastro" />
-      <form onSubmit={handleRegister} className="form">
+      <Header title="CADASTRO" />
+      <form onSubmit={handleRegister} className="form pageContent">
         <div className="formGroup">
           <Input
             label="Nome"

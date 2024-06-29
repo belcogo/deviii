@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import authService from '../../services/authService';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { userAtom } from '../../state/user.atom';
 import { useNavigate } from 'react-router-dom';
 import bookService from '../../services/bookService';
 import { myBooksAtom, othersBooksAtom } from '../../state/books.atom';
-import { Button, Input } from '../../components';
+import { Button, Input, Loader } from '../../components';
 import { Header } from '../../components/header/header.component';
 import './login.style.css'
+import { LoaderAtom } from '../../state/loader.atom';
 
-export const LoginPage = () => {
+const Login = () => {
   const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState('');
+  const [isLoading, setIsLoading] = useRecoilState(LoaderAtom);
   const shouldDisableButton = !email || !password || isLoading
   const setUser = useSetRecoilState(userAtom);
   const setMyBooks = useSetRecoilState(myBooksAtom)
@@ -55,7 +56,7 @@ export const LoginPage = () => {
   return (
     <div className="page">
       <Header title="LOGIN" />
-      <form className="form" onSubmit={handleLogin}>
+      <form className="form pageContent" onSubmit={handleLogin}>
         <div className='columnWrapper'>
           <Input
             label="Email"
@@ -79,3 +80,10 @@ export const LoginPage = () => {
     </div>
   );
 };
+
+export const LoginPage = () => (
+  <>
+    <Login />
+    <Loader />
+  </>
+)
