@@ -5,7 +5,9 @@ import { userAtom } from '../../state/user.atom';
 import { useNavigate } from 'react-router-dom';
 import bookService from '../../services/bookService';
 import { myBooksAtom, othersBooksAtom } from '../../state/books.atom';
-import { Button } from '../../components';
+import { Button, Input } from '../../components';
+import { Header } from '../../components/header/header.component';
+import './login.style.css'
 
 export const LoginPage = () => {
   const [email, setUsername] = useState('');
@@ -42,26 +44,24 @@ export const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input
+    <div className="page">
+      <Header title="LOGIN" />
+      <form className="form" onSubmit={handleLogin}>
+        <div className='inputsWrapper'>
+          <Input
+            label="Email"
             type="text"
             value={email}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
+          <Input
+            label="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Button text="Login" type="submit" />
+        <Button text="Entrar" type="submit" filled />
         {error && <p>{error}</p>}
       </form>
     </div>
