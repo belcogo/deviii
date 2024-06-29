@@ -13,13 +13,20 @@ export const LoginPage = () => {
   const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState('');
+  const shouldDisableButton = !email || !password || isLoading
   const setUser = useSetRecoilState(userAtom);
   const setMyBooks = useSetRecoilState(myBooksAtom)
   const setOthersBooks = useSetRecoilState(othersBooksAtom)
   const navigate = useNavigate();
 
+  const navigateToRegistration = () => {
+    navigate('/register')
+  }
+
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     try {
       await authService.login(email, password);
       const userInfo = await authService.userDetails();
@@ -40,6 +47,8 @@ export const LoginPage = () => {
     } catch (error) {
       console.debug(error)
       setError('Invalid username or password');
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -47,7 +56,7 @@ export const LoginPage = () => {
     <div className="page">
       <Header title="LOGIN" />
       <form className="form" onSubmit={handleLogin}>
-        <div className='inputsWrapper'>
+        <div className='columnWrapper'>
           <Input
             label="Email"
             type="text"
@@ -60,9 +69,12 @@ export const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p className='error'>{error}</p>}
         </div>
-        <Button text="Entrar" type="submit" filled />
-        {error && <p>{error}</p>}
+        <div className="columnWrapper">
+          <Button text="Entrar" type="submit" filled  disabled={shouldDisableButton} />
+          <Button text="Não tenho login" type="button" outlined onPress={navigateToRegistration} />
+        </div>
       </form>
     </div>
   );

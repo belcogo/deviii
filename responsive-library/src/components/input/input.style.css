@@ -21,14 +21,11 @@
   left: 5px;
 }
 
-input {
+.input {
   height: 20px;
   padding: 15px 10px 10px 5px;
   margin: 5px 0;
-  border-bottom-width: 2;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border: 2px solid transparent;
   border-bottom-color: #B18653;
   background: transparent;
 }

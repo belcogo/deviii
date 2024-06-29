@@ -1,58 +1,59 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import userService from '../../services/userService';
-import { styles } from './register.style';
+import { Button, Input } from '../../components';
+import { Header } from '../../components/header/header.component';
+import './register.style.css'
 
 export const RegisterPage = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState([]);
+  const shouldDisableButton = useMemo(() => !name || !email || !password, [name, email, password])
   const navigate = useNavigate();
+
+  const returnToLoing = () => navigate('/login')
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       await userService.createUser(name, password, email);
-      navigate('/login'); // Redirecionar para a página de login após o registro
+      returnToLoing(); // Redirecionar para a página de login após o registro
     } catch (error) {
-      setError('Error registering user');
+      console.debug(error?.response?.data)
+      setErrors(error.response.data)
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h1>Register</h1>
-      <form onSubmit={handleRegister} style={styles.form}>
-        <div style={styles.formGroup}>
-          <label>Name:</label>
-          <input
+    <div className="container">
+      <Header title="Cadastro" />
+      <form onSubmit={handleRegister} className="form">
+        <div className="formGroup">
+          <Input
+            label="Nome"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            style={styles.input}
           />
-        </div>
-        <div style={styles.formGroup}>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={styles.input}
-          />
-        </div>
-        <div style={styles.formGroup}>
-          <label>Email:</label>
-          <input
+          <Input
+            label="Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={styles.input}
+          />
+          <Input
+            label="Senha"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" style={styles.button}>Register</button>
-        {error && <p style={styles.error}>{error}</p>}
+        <div className="columnWrapper">
+          <Button type="submit" text="Cadastrar" filled error={errors?.length} disabled={shouldDisableButton} />
+          <Button type="button" text="Voltar ao Login" outlined error={errors?.length} onPress={returnToLoing} />
+        </div>
       </form>
     </div>
   );

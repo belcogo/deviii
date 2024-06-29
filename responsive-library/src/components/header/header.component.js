@@ -6,7 +6,7 @@ export function Header({ title, showIcon }) {
   return (
     <div style={styles.wrapper}>
       {showIcon && <IconButton Icon={ArrowLeftIcon} />}
-      <p style={styles.title}>{title}</p>
+      <h1 style={styles.title}>{title}</h1>
     </div>
   )
 }
