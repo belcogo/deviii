@@ -1,13 +1,29 @@
 import './App.css';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import { CreateBookPage, HomePage, LoginPage, RegisterPage } from './pages';
+import { CreateBookPage, LoginPage, MyBooksPage, RegisterPage } from './pages';
+import { FooterTab } from './components/footer-tab/footer-tab.component';
+import { Header } from './components/header/header.component';
+import { Loader } from './components';
+
+const Element = ({ children, showFooter }) => (
+  <>
+    <Header />
+    {children}
+    {showFooter && <FooterTab />}
+    <Loader />
+  </>
+)
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/'>
-    <Route path='/login' element={<LoginPage />} />
-    <Route path='/home' element={<HomePage />} />
-    <Route path='/books/create' element={<CreateBookPage />} />
-    <Route path='/register' element={<RegisterPage />} />
+    <Route path='/home' />
+    <Route path='/search' />
+    <Route path='/my-books' element={<Element showFooter><MyBooksPage /></Element>} />
+    <Route path='/history' />
+    <Route path='/profile' />
+    <Route path='/login' element={<Element><LoginPage /></Element>} />
+    <Route path='/books/create' element={<Element><CreateBookPage /></Element>} />
+    <Route path='/register' element={<Element><RegisterPage /></Element>} />
   </Route>
 ))
 

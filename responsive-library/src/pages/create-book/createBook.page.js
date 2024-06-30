@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import bookService from '../../services/bookService';
 import genreService from '../../services/genreService';
-import { styles } from './create-book.style';
+import './create-book.style.css'
+import { Button, Input } from '../../components';
 
 export const CreateBookPage = () => {
   const [title, setTitle] = useState('');
@@ -10,6 +11,8 @@ export const CreateBookPage = () => {
   const [publishedDate, setPublishedDate] = useState('');
   const [genres, setGenres] = useState([]);
   const [error, setError] = useState('');
+
+  const shouldDisableButton = !title || !idGenre || !author || !publishedDate
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -33,53 +36,43 @@ export const CreateBookPage = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h1>Add Book</h1>
-      <form onSubmit={handleAddBook} style={styles.form}>
-        <div style={styles.formGroup}>
-          <label>Title:</label>
-          <input
+    <div className="page full">
+      <form onSubmit={handleAddBook} className="form">
+        <div className="formGroup">
+          <Input
             type="text"
+            label="Titulo"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            style={styles.input}
           />
-        </div>
-        <div style={styles.formGroup}>
-          <label>Genre:</label>
-          <select
-            value={idGenre}
-            onChange={(e) => setIdGenre(e.target.value)}
-            style={styles.input}
-          >
-            <option value="">Select Genre</option>
-            {genres.map((genre) => (
-              <option key={genre.id} value={genre.id}>
-                {genre.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div style={styles.formGroup}>
-          <label>Author:</label>
-          <input
+          <>
+            <label>Genre:</label>
+            <select
+              value={idGenre}
+              onChange={(e) => setIdGenre(e.target.value)}
+            >
+              <option value="">Select Genre</option>
+              {genres.map((genre) => (
+                <option key={genre.id} value={genre.id}>
+                  {genre.name}
+                </option>
+              ))}
+            </select>
+          </>
+          <Input
             type="text"
+            label="Autor"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            style={styles.input}
           />
-        </div>
-        <div style={styles.formGroup}>
-          <label>Published Date:</label>
-          <input
-            type="date"
+          <Input
+            type="text"
+            label="Data de publicação"
             value={publishedDate}
             onChange={(e) => setPublishedDate(e.target.value)}
-            style={styles.input}
           />
         </div>
-        <button type="submit" style={styles.button}>Add Book</button>
-        {error && <p style={styles.error}>{error}</p>}
+        <Button type="submit" text="Adicionar livro" filled disabled={shouldDisableButton} />
       </form>
     </div>
   );

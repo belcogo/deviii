@@ -2,7 +2,6 @@ import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import userService from '../../services/userService';
 import { Button, Input } from '../../components';
-import { Header } from '../../components/header/header.component';
 import './register.style.css'
 
 export const RegisterPage = () => {
@@ -27,8 +26,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="container">
-      <Header title="CADASTRO" />
+    <div className="page full">
       <form onSubmit={handleRegister} className="form pageContent">
         <div className="formGroup">
           <Input

@@ -11,9 +11,13 @@
 .page {
   background-color: #EAE2D7;
   flex: 1;
-  height: 100vh;
+  height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
+}
+
+.full {
+  height: calc(100vh - 60px);  
 }
 
 .pageContent {

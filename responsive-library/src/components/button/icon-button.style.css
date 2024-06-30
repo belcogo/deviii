@@ -1,0 +1,17 @@
+.buttonWrapper {
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 20;
+  height: 20;
+}
+
+.absoluteButton {
+  position: absolute;
+  left: 10;
+}

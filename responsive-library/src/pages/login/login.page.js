@@ -5,12 +5,11 @@ import { userAtom } from '../../state/user.atom';
 import { useNavigate } from 'react-router-dom';
 import bookService from '../../services/bookService';
 import { myBooksAtom, othersBooksAtom } from '../../state/books.atom';
-import { Button, Input, Loader } from '../../components';
-import { Header } from '../../components/header/header.component';
+import { Button, Input } from '../../components';
 import './login.style.css'
 import { LoaderAtom } from '../../state/loader.atom';
 
-const Login = () => {
+export const LoginPage = () => {
   const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -44,7 +43,7 @@ const Login = () => {
       }, { myBooks: [], othersBooks: []})
       setMyBooks(myBooks)
       setOthersBooks(othersBooks)
-      navigate('/home')
+      navigate('/my-books')
     } catch (error) {
       console.debug(error)
       setError('Invalid username or password');
@@ -54,8 +53,7 @@ const Login = () => {
   };
 
   return (
-    <div className="page">
-      <Header title="LOGIN" />
+    <div className="page full">
       <form className="form pageContent" onSubmit={handleLogin}>
         <div className='columnWrapper'>
           <Input
@@ -80,10 +78,3 @@ const Login = () => {
     </div>
   );
 };
-
-export const LoginPage = () => (
-  <>
-    <Login />
-    <Loader />
-  </>
-)

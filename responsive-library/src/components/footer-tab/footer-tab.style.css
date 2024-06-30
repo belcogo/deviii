@@ -1,0 +1,19 @@
+.footerTab {
+  display: flex;
+  flex: 1;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: #D5C5AE;
+}
+
+.tab {
+  display: flex;
+  width: 60px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab.activeTab {
+  background-color: #EAE2D7;
+}
