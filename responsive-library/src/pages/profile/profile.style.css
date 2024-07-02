@@ -1,0 +1,17 @@
+.container {
+    background-color: #EAE2D7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+  }
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
