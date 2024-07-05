@@ -8,6 +8,7 @@ import { Modal } from './components/modal/modal.component';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from './state/user.atom';
 import { useEffect } from 'react';
+import { HistoryPage } from './pages/history/history.page';
 
 const Element = ({ children, showFooter }) => {
   const navigate = useNavigate()
@@ -33,7 +34,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/home' />
     <Route path='/search' element={<Element showFooter><SearchPage /></Element>} />
     <Route path='/my-books' element={<Element showFooter><MyBooksPage /></Element>} />
-    <Route path='/history' />
+    <Route path='/history' element={<Element showFooter><HistoryPage /></Element>}/>
     <Route path='/profile' element={<Element showFooter><ProfilePage /></Element>} />
     <Route path='/login' element={<Element><LoginPage /></Element>} />
     <Route path='/books/create' element={<Element><CreateBookPage /></Element>} />
