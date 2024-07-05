@@ -27,7 +27,7 @@ Develop an app or website that allows people to exchange books with each other.
 ### How to run the back-end
 ```bash
 # clone repository
-git clone https://github.com/JoaoAccorsi/Web-Store.git
+git clone https://github.com/belcogo/deviii.git
 
 # run in folder library-api/src/main/java/com/unisinos/library/LibraryApiApplication.java
 ./mvnw spring-boot:run
