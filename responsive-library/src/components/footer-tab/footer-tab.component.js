@@ -22,7 +22,7 @@ export function FooterTab() {
             >
               <IconButton 
                 Icon={Icon} 
-                onPress={() => navigate(path)}
+                onClick={() => navigate(path)}
               />
             </div>
           )

@@ -1,0 +1,13 @@
+.floatingButton {
+  position: fixed;
+  bottom: 70px;
+  right: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: #B18653;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  color: #EAE2D7;
+  box-shadow: 0 0 2px rgba(0,0,0,0.7);
+}
