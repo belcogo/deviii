@@ -9,3 +9,11 @@ export const othersBooksAtom = atom({
   key: 'othersBooks',
   default: [],
 })
+
+export const requestedBookAtom = atom({
+  key: 'requestedBookAtom',
+  default: {
+    id: null,
+    title: null,
+  }
+})  

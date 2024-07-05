@@ -4,6 +4,7 @@ import { CreateBookPage, LoginPage, MyBooksPage, RegisterPage, ProfilePage, Sear
 import { FooterTab } from './components/footer-tab/footer-tab.component';
 import { Header } from './components/header/header.component';
 import { Loader } from './components';
+import { Modal } from './components/modal/modal.component';
 
 const Element = ({ children, showFooter }) => (
   <>
@@ -11,6 +12,7 @@ const Element = ({ children, showFooter }) => (
     {children}
     {showFooter && <FooterTab />}
     <Loader />
+    <Modal/>
   </>
 )
 

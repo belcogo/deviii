@@ -2,14 +2,14 @@ import { useMemo, useState } from "react";
 import classnames from 'classnames'
 import './input.style.css';
 
-export function Input({ label, value, onChange, placeholder, ...props }) {
+export function Input({ label, value, onChange, placeholder, keepFocusedLayout, ...props }) {
   const isInputEmpty = useMemo(() => !value, [value])
   const [isInputFocused, setIsInputFocused] = useState(false)
 
   const onFocus = () => setIsInputFocused(true)
   const onBlur = () => setIsInputFocused(false)
 
-  const useInitialStyle = isInputEmpty && !isInputFocused
+  const useInitialStyle = (isInputEmpty && !isInputFocused)
   return (
     <div
       className="inputWrapper">
@@ -17,8 +17,8 @@ export function Input({ label, value, onChange, placeholder, ...props }) {
         <label
           className={classnames(
             'label',
-            {'emptyInputLabel': useInitialStyle },
-            {'inputWithValueLabel': !useInitialStyle}
+            {'emptyInputLabel': useInitialStyle && !keepFocusedLayout },
+            {'inputWithValueLabel': !useInitialStyle || keepFocusedLayout}
           )}
         >
           {label}

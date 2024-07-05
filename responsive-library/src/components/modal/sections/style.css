@@ -1,0 +1,42 @@
+.modal {
+  display: flex;
+}
+
+.modalSection {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+
+  .sectionHeader {
+    margin: 5px 0 10px 0;
+
+    > h2 {
+      margin: 0;
+      text-align: center;
+      color: #312229;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+  
+    > p {
+      margin: 0;
+      text-align: center;
+      color: #312229;
+    }
+  }
+
+  > .form {
+    padding: unset;
+  }
+}
+
+.modalButtonBox {
+  display: flex;
+  justify-content: space-between;
+
+  > .button {
+    width: calc(50% - 5px);
+  }
+}

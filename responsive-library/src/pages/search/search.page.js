@@ -1,7 +1,9 @@
-import { useRecoilValue } from "recoil";
-import { othersBooksAtom } from "../../state/books.atom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { othersBooksAtom, requestedBookAtom } from "../../state/books.atom";
 import { CardList, Input } from "../../components";
 import { useEffect, useMemo, useState } from "react";
+import { modalVisibleAtom } from "../../state/modal.atom";
+import { modals } from "../../enums/modals.enum";
 
 function checkFilters(title, author, genre, term) {
 	const titleToCompare = title?.toLowerCase()
@@ -17,6 +19,8 @@ function checkFilters(title, author, genre, term) {
 export function SearchPage() {
 	const [searchTerm, setSearchTerm] = useState('')
 	const [filterTerm, setFilterTerm] = useState('')
+	const setIsVisible = useSetRecoilState(modalVisibleAtom)
+	const setRequestedBook = useSetRecoilState(requestedBookAtom)
 	const othersBooks = useRecoilValue(othersBooksAtom)
 	const booksToShow = useMemo(() => {
 		if (!filterTerm) return othersBooks
@@ -35,10 +39,16 @@ export function SearchPage() {
 		}
 	}, [searchTerm])
 
+	
+  const handleCardPress = (id, title) => {
+		setRequestedBook({ id, title })
+    setIsVisible(modals.REQUEST_BOOK)
+  }
+
 	return (
 		<div className="page">
 			<Input label="Busca" value={searchTerm} onChange={handleChange} />
-			<CardList books={booksToShow} showIcon />
+			<CardList books={booksToShow} showIcon handleCardPress={handleCardPress} />
 		</div>
 	);
 }
