@@ -3,6 +3,7 @@ import { IconButton } from './button/icon-button.component'
 import { Input } from './input/input.component'
 import { Loader } from './loader/loader.component'
 import { Card } from './card/card.component'
+import { CardList } from './card-list/card-list.component'
 
 export {
   Button,
@@ -10,4 +11,5 @@ export {
   Input,
   Loader,
   Card,
+  CardList,
 }
