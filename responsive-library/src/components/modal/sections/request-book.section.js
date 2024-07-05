@@ -24,12 +24,15 @@ export function RequestBookSection() {
     console.debug(address, date, time)
     try {
       setIsLoading(true)
-      const result = await borrowService.requestBorrow(id)
-      console.debug(result)
+      await borrowService.requestBorrow(id)
+      alert('Empréstimo solicitado')
     } catch (e) {
-
+      alert('Ocorreu um erro na solicitação do empréstimo')
+      console.debug(e)
     } finally {
       setIsLoading(false)
+      setRequestedBook({})
+      setIsModalVisible(null)
     }
   }
 
@@ -44,7 +47,7 @@ export function RequestBookSection() {
         <h2>Solicitar empréstimo</h2>
         <p className="subtitle">{title}</p>
       </div>
-      <form onSubmit={handleSubmit} className="form">
+      <form className="form">
         <div>
           <Input label="Local de entrega" type="text" onChange={changeAddress} />
           <Input label="Data de entrega" type="date" keepFocusedLayout onChange={changeDate} />
@@ -52,7 +55,7 @@ export function RequestBookSection() {
         </div>
         <div className="modalButtonBox">
           <Button type="button" text="Cancelar" outlined onPress={handleCancel} />
-          <Button type="submit" text="Solicitar" filled />
+          <Button type="button" text="Solicitar" filled onPress={handleSubmit} />
         </div>
       </form>
     </div>
