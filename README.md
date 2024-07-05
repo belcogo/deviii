@@ -11,20 +11,18 @@ Develop an app or website that allows people to exchange books with each other.
 
 ### Pre requirements
 #### Frontend
-- Node version `18.16.0`
+- Node version `20.15.0`
 #### Backend
 - Java `18` or docker (to run the API with a docker container)
 
 ### How to emulate the app
 **Make sure you have either a iOS or an Android emulator configured**
-1. From the projects root folder `/Biblioteca` run the command `yarn` to install the dependencies.
-2. From the `ios/` folder run the command `pod install`.
-3. Back to the the project's root folder run the command `npm run start`.
+1. From the projects root folder `/responsive-library` run the command `npm i` to install the dependencies.
+2. After that run `npm run start`.
+4. Access the url `localhost:3000` from your browser
 
-    In the console you will be presented with a few options, select the one corresponding to the emulator that you have configured and the app will be installed and started automatically.
-    ![console example](console-example.png)
-
-    If you already have the app installed in the emulator, there is no need to reinstall it by selecting an option, just open the app in the emulator and it will be using the bundle currently running.
+**To see the project as a responsive app**
+1. Open the developer tools and click on the device tool bar to set the view to responsive
 
 ### How to run the back-end
 - Consider to take a look on the [ README](library-api\README.md).
