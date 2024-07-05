@@ -3,6 +3,7 @@ import axios from 'axios';
 const URLs = {
   GET: (userId) => `http://localhost:8099/users/${userId}/borrows`,
   POST: () => "http://localhost:8099/borrows",
+  PUT: () => "http://localhost:8099/borrows",
 };
 
 const setAuthToken = (token) => {
@@ -36,9 +37,21 @@ const requestBorrow = async (idBook) => {
   }
 }
 
+const updateRequestBorrow = async (idBook, status) => {
+  try {
+    setAuthToken(localStorage.getItem('authToken'));
+    const response = await axios.put(URLs.PUT(), { id: idBook, borrowStatus: status });
+    return response.data;
+  } catch (error) {
+    console.error('Error creating user:', error);
+    throw error;
+  }
+}
+
 const borrowService = {
   getBorrows,
   requestBorrow,
+  updateRequestBorrow,
 };
 
 export default borrowService;

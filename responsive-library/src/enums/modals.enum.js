@@ -1,4 +1,5 @@
 import { RequestBookSection } from "../components/modal/sections/request-book.section"
+import { ReviewBookSection } from "../components/modal/sections/review-request.section"
 
 export const modals = {
   REQUEST_BOOK: 'REQUEST_BOOK',
@@ -7,4 +8,5 @@ export const modals = {
 
 export const modalsComponents = {
   [modals.REQUEST_BOOK]: RequestBookSection,
+  [modals.REVIEW_REQUEST]: ReviewBookSection,
 }

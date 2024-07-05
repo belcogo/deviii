@@ -1,15 +1,19 @@
 .cardWrapper {
   background-color: #EAE2D7;
+  border: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.withStyle {
   box-shadow: 0 1px 1px rgba(0,0,0,.25);
   padding: 15px;
-  height: 80px;
-  display: flex;
   border: 1px solid #D5C5AE;
   border-radius: 5px;
-  width: 100%;
   margin: 5px 0;
-  justify-content: space-between;
   cursor: pointer;
+  height: 80px;
 }
 
 .cardContent {
@@ -52,4 +56,8 @@
 
 .cardIcon {
   width: 20px;
+}
+
+.historyCard {
+  width: unset;
 }
