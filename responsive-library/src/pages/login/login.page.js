@@ -30,6 +30,7 @@ export const LoginPage = () => {
     try {
       await authService.login(email, password);
       const userInfo = await authService.userDetails();
+      console.debug(userInfo)
       setUser(userInfo)
       const books = await bookService.fetchBooks();
       const { myBooks, othersBooks } = books?.reduce(({ myBooks, othersBooks }, book) => {

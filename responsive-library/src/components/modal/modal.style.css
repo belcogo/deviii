@@ -1,0 +1,32 @@
+.overlay {
+  background-color: rgba(49, 34, 41, .25);
+  backdrop-filter: blur(1px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition-duration: .5s;
+  bottom: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+
+  > .modal {
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #EAE2D7;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 0;
+  }
+
+  &.visible {
+    top: 0;
+    transition-duration: .5s;
+
+    > .modal {
+      height: 370px;
+    }
+  }
+}

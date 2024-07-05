@@ -5,7 +5,7 @@ import HistoryIcon from '../assets/icons/history.svg'
 import ProfileIcon from '../assets/icons/user.svg'
 
 export const tabs = [
-  { path: '/home', Icon: HomeIcon },
+  // { path: '/home', Icon: HomeIcon },
   { path: '/search', Icon: SearchIcon },
   { path: '/my-books', Icon: MyBooksIcon },
   { path: '/history', Icon: HistoryIcon },
