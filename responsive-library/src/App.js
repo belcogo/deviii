@@ -5,6 +5,7 @@ import { FooterTab } from './components/footer-tab/footer-tab.component';
 import { Header } from './components/header/header.component';
 import { Loader } from './components';
 import { Modal } from './components/modal/modal.component';
+import { HistoryPage } from './pages/history/history.page';
 
 const Element = ({ children, showFooter }) => (
   <>
@@ -21,7 +22,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/home' />
     <Route path='/search' element={<Element showFooter><SearchPage /></Element>} />
     <Route path='/my-books' element={<Element showFooter><MyBooksPage /></Element>} />
-    <Route path='/history' />
+    <Route path='/history' element={<Element showFooter><HistoryPage /></Element>}/>
     <Route path='/profile' element={<Element showFooter><ProfilePage /></Element>} />
     <Route path='/login' element={<Element><LoginPage /></Element>} />
     <Route path='/books/create' element={<Element><CreateBookPage /></Element>} />
