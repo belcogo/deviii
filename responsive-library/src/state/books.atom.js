@@ -10,6 +10,11 @@ export const othersBooksAtom = atom({
   default: [],
 })
 
+export const borrowedBooksAtom = atom({
+  key: 'borrowedBooks',
+  default: [],
+})
+
 export const requestedBookAtom = atom({
   key: 'requestedBookAtom',
   default: {

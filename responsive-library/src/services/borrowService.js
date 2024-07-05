@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8099/borrows';
+const URLs = {
+  GET: (userId) => `http://localhost:8099/users/${userId}/borrows`,
+  POST: () => "http://localhost:8099/borrows",
+};
 
 const setAuthToken = (token) => {
   if (token) {
@@ -10,10 +13,22 @@ const setAuthToken = (token) => {
   }
 };
 
+const getBorrows = async (id) => {
+  try {
+    setAuthToken(localStorage.getItem("authToken"));
+    const response = await axios.get(URLs.GET(id));
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching borrows:", error);
+    throw error;
+  }
+};
+
 const requestBorrow = async (idBook) => {
   try {
     setAuthToken(localStorage.getItem('authToken'));
-    const response = await axios.post(API_URL, { idBook });
+    const response = await axios.post(URLs.POST(), { idBook });
     return response.data;
   } catch (error) {
     console.error('Error creating user:', error);
@@ -22,6 +37,7 @@ const requestBorrow = async (idBook) => {
 }
 
 const borrowService = {
+  getBorrows,
   requestBorrow,
 };
 
